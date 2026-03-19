@@ -1,24 +1,46 @@
 *.log
 .DS_Store
+Thumbs.db
+
+# Environment
 .env
 .env.backup
 .env.production
-.phpactor.json
-.phpunit.result.cache
-/.fleet
-/.idea
-/.nova
-/.phpunit.cache
-/.vscode
-/.zed
-/auth.json
+
+# PHP / Laravel
+/vendor
+/storage/*.key
+/storage/logs/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/bootstrap/cache/*
+
+# Node
 /node_modules
+
+# Build files
 /public/build
 /public/hot
 /public/storage
-/storage/*.key
-/storage/pail
-/vendor
+
+# QR generated files
+/public/qr
+/qr
+
+# IDEs
+/.vscode
+/.idea
+/.fleet
+/.nova
+/.zed
+
+# Testing / cache
+.phpunit.result.cache
+/.phpunit.cache
+.phpactor.json
+
+# Misc
+/auth.json
 Homestead.json
 Homestead.yaml
-Thumbs.db
