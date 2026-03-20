@@ -145,8 +145,8 @@ Can be scanned via mobile devices or drop the svg file created inside Public/Qr 
 👨‍💻 Manuel Mallo
 
 📸 Screenshots
-### LandinPage
-![LandinPage](assets/screenshots/LandinPage.png)
+### LandingPage
+![LandingPage](assets/screenshots/LandingPage.png)
 
 ### Generate A Plan Page
 ![Generate A Plan Page](assets/screenshots/Generate_A_Plan_Page.png)
