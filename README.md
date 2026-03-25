@@ -3,50 +3,78 @@
 An intelligent full-stack gym management platform that combines AI-powered workout planning, machine tracking with QR codes, and fitness analytics to deliver a modern gym experience.
 
 🚀 Features
-
-🤖 AI Workout Planner
-Generate personalized workout plans using AI (Clarifai / OpenAI-compatible API)
-
-🏷️ Machine Management with QR Codes
-Each machine has a unique QR code that links to its details and workouts
-
-📊 Workout Tracking System
-Track workouts, sets, reps, and progress over time
-
-🔐 Authentication System
-Secure login/register using JWT authentication
-
-📈 Fitness Metrics
-Store and analyze user fitness data
-
-🎯 Workout Programs
-Structured training programs with daily progression
-
-🌐 RESTful API
-Clean and scalable backend architecture
-
-🛠️ Tech Stack
-Backend
-
-Laravel (PHP)
-
-MySQL
-
 JWT Authentication
+Categories & video content
+Favorites system
+AI integration using Clarifai (OpenAI-compatible API)
+📦 Project Setup
+🖥️ Backend Setup (Laravel)
+1. Navigate to backend
+cd backend
+2. Install dependencies
+composer install
+3. Create .env file
+cp .env.example .env
+4. Configure .env
 
-REST API
+Open the .env file and update the following:
 
-QR Code Generation (SimpleSoftwareIO)
+🔐 App Configuration
+APP_NAME="fyp-backend"
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://localhost
+🔑 AI Setup (VERY IMPORTANT)
 
-AI Integration
+This project uses Clarifai with OpenAI-compatible API.
 
-Clarifai API (OpenAI-compatible models)
+👉 Step 1: Create a Clarifai Account
+Go to: https://www.clarifai.com/
+Sign up / log in
+Go to your dashboard
+Generate your Personal Access Token (PAT)
+👉 Step 2: Add Clarifai Keys to .env
 
-Frontend
+Replace the values in your .env:
 
-React.js (Vite)
+CLARIFAI_PAT=your_clarifai_pat_here
+CLARIFAI_BASE_URL=https://api.clarifai.com/v2/ext/openai/v1
+CLARIFAI_MODEL=https://clarifai.com/openai/chat-completion/models/gpt-oss-120b
 
-Axios
+⚠️ Without this, AI features will NOT work.
+
+🗄️ Database Setup
+1. Configure database
+
+Update:
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=fyp-backend
+DB_USERNAME=root
+DB_PASSWORD=
+2. Run migrations
+php artisan migrate
+3. Run queue & session tables (IMPORTANT)
+
+Since your app uses database sessions & queues:
+
+php artisan session:table
+php artisan queue:table
+php artisan migrate
+🔐 JWT Setup
+
+Generate JWT secret:
+
+php artisan jwt:secret
+
+This will update:
+
+JWT_SECRET=your_generated_secret
+▶️ Run Backend
+php artisan serve
+
 
 📂 Project Structure
 backend/
@@ -62,24 +90,6 @@ frontend/
 ├── public/
 ├── package.json
 └── .env.example
-⚙️ Installation & Setup
-🔹 1. Clone the repository
-git clone https://github.com/CharbelWehbe/gym-ai-backend.git
-cd gym-ai-backend
-🔹 2. Install backend dependencies
-composer install
-🔹 3. Setup environment
-cp .env.example .env
-
-Then configure your .env file.
-
-🔹 4. Generate application key
-php artisan key:generate
-🔹 5. Run migrations
-php artisan migrate
-🔹 6. Start the server
-php artisan serve
-🔑 Environment Variables
 
 Important variables you need to configure in .env:
 
