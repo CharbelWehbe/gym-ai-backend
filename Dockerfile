@@ -1,23 +1,23 @@
-FROM php:8.2-cli
+FROM php:8.3-cli
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git curl unzip libpng-dev libonig-dev libxml2-dev zip
+    git curl unzip libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev zip
+
+# Install PHP extensions (IMPORTANT FIX)
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd exif
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
 WORKDIR /app
 
-# Copy project files
 COPY . .
 
-# Install PHP dependencies
+# Install dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Expose Render port
 EXPOSE 10000
 
-# Start Laravel
 CMD php artisan serve --host=0.0.0.0 --port=10000
