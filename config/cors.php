@@ -44,7 +44,8 @@ return [
     'allowed_origins' => [
         'http://localhost:5173',
         'http://localhost:3000',
-        'gym-ai-frontend-beta.vercel.app'
+        'https://gym-ai-frontend-beta.vercel.app',
+        'https://gym-ai-frontend-zuo8.vercel.app'
     ],
 
     'allowed_origins_patterns' => [],
