@@ -24,6 +24,6 @@ EXPOSE 10000
 
 # Runtime - env vars are available here ✅
 CMD php artisan config:clear && \
-    php artisan migrate --force && \
+    php artisan migrate --force 2>&1 | grep -v "already exists" ; \
     php artisan config:cache && \
     php artisan serve --host=0.0.0.0 --port=10000
