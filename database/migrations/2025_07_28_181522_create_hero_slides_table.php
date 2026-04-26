@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('hero_slides', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('portal_id');
+            $table->unsignedBigInteger('portal_id')->nullable();
 $table->unsignedBigInteger('category_id')->nullable();///////////changed to nullable
 
             $table->string('title');
@@ -22,8 +22,8 @@ $table->string('chef_image')->nullable(); // path relative to storage/////change
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 
-            $table->foreign('portal_id')->references('id')->on('portals')->onDelete('cascade');
-             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            // $table->foreign('portal_id')->references('id')->on('portals')->onDelete('cascade');
+            //  $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
         });
     }
