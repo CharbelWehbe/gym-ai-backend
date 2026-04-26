@@ -4,7 +4,7 @@ FROM php:8.3-cli
 RUN apt-get update && apt-get install -y \
     git curl unzip libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev zip
 
-# PHP extensions (CRITICAL FIX)
+# PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -17,13 +17,13 @@ WORKDIR /app
 
 COPY . .
 
-# RUN composer install --no-dev --optimize-autoloader
-RUN composer install --no-dev --optimize-autoloader \
-    && php artisan migrate --force \
-    && php artisan config:clear \
-    && php artisan cache:clear \
-    && php artisan config:cache
+# Build step - NO migrate here, no DB access at build time
+RUN composer install --no-dev --optimize-autoloader
 
 EXPOSE 10000
 
-CMD php artisan serve --host=0.0.0.0 --port=10000
+# Runtime - env vars are available here ✅
+CMD php artisan config:clear && \
+    php artisan migrate --force && \
+    php artisan config:cache && \
+    php artisan serve --host=0.0.0.0 --port=10000
