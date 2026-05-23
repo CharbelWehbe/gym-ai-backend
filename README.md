@@ -43,21 +43,6 @@ CLARIFAI_MODEL=https://clarifai.com/openai/chat-completion/models/gpt-oss-120b
 
 ⚠️ Without this, AI features will NOT work.
 
-🗄️ Database Setup
-1. Configure database
-
-Update:
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=fyp-backend
-DB_USERNAME=root
-DB_PASSWORD=
-2. Run migrations
-php artisan migrate
-3. Run queue & session tables (IMPORTANT)
-
 Since your app uses database sessions & queues:
 
 php artisan session:table
